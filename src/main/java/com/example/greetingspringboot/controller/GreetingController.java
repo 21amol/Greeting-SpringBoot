@@ -1,15 +1,27 @@
 package com.example.greetingspringboot.controller;
 import com.example.greetingspringboot.model.User;
+import com.example.greetingspringboot.service.ServiceLayer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Hello")
 public class GreetingController {
 
-        @RequestMapping(value = { "","/Home"})
-        public String sayHello() {
-            return "Hello, I am Amol!!!";
-        }
+    //UC2
+    @Autowired
+    ServiceLayer serviceLayer;
+    @GetMapping("/ser")
+    public String sayHello(){
+        String response = serviceLayer.sayHello();
+        return response;
+    }
+
+//
+//        @RequestMapping(value = { "","/Home"})
+//        public String sayHello() {
+//            return "Hello, I am Amol!!!";
+//        }
 
         @RequestMapping(value = {"/hello-w"}, method = RequestMethod.GET)
         public String sayHelloDifferently() {
