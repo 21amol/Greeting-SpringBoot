@@ -1,9 +1,15 @@
 package com.example.greetingspringboot.model;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
-//@Entity
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue
+    public int id;
     private String firstName;
     private String lastName;
 
