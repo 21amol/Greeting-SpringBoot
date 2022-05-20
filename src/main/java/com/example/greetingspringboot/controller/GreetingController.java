@@ -1,6 +1,7 @@
 package com.example.greetingspringboot.controller;
 
 import com.example.greetingspringboot.model.User;
+import com.example.greetingspringboot.repository.SpringRepo;
 import com.example.greetingspringboot.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ public class GreetingController {
 
     @Autowired
     ServiceLayer serviceLayer;
+    @Autowired
+    SpringRepo springRepository;
 
     @GetMapping("/ser")                           //UC-2
     public String sayHelloService() {
@@ -79,5 +82,10 @@ public class GreetingController {
     public List<User> showAll() {
         List<User> response = serviceLayer.showAll();
         return response;
+    }
+
+    @PutMapping("/edit")
+    public User edit(@RequestBody User user) {
+        return springRepository.save(user);
     }
 }

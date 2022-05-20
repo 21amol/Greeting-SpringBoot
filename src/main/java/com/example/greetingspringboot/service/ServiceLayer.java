@@ -18,8 +18,7 @@ public class ServiceLayer {
         return "Hello World!!!";
 
     }
-
-
+    
     public User sayPostHello(User user) {
         User newUser = new User(user);
         springRepository.save(newUser);
