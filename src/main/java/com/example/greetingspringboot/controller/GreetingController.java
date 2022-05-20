@@ -8,43 +8,53 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Hello")
 public class GreetingController {
 
-    //UC2
+
     @Autowired
     ServiceLayer serviceLayer;
-    @GetMapping("/ser")
-    public String sayHello(){
-        String response = serviceLayer.sayHello();
+
+    @GetMapping("/ser")                           //UC-2
+    public String sayHelloService() {
+        String response;
+        response = serviceLayer.sayHello();
         return response;
     }
 
-//
-//        @RequestMapping(value = { "","/Home"})
-//        public String sayHello() {
-//            return "Hello, I am Amol!!!";
-//        }
-
-        @RequestMapping(value = {"/hello-w"}, method = RequestMethod.GET)
-        public String sayHelloDifferently() {
-            return "Hello Everyone, its me Amol!!!";
+    @RequestMapping(value = { "","/Home"})
+    public String sayHello() {
+            return "Hello, I am Amol!!!";
         }
 
-        @RequestMapping(value = {"/query"}, method = RequestMethod.GET)
-        public String sayHello(@RequestParam(value = "name") String name) {
-            return "Hello " + name  + "!!!";
-        }
+    @RequestMapping(value = {"/hello-w"}, method = RequestMethod.GET)
+    public String sayHelloDifferently() {
+        return "Hello Everyone, its me Amol!!!";
+    }
 
-        @GetMapping("/param/{name}")
-        public String sayHelloParam(@PathVariable String name) {
-            return "Hello " + "Mr." + name  + "!!!";
-        }
+    @RequestMapping(value = {"/query"}, method = RequestMethod.GET)
+    public String sayHello(@RequestParam(value = "name") String name) {
+        return "Hello " + name + "!!!";
+    }
 
-        @PostMapping("/post")
-        public String sayHello(@RequestBody User user) {
-            return "Hello " + user.getFirstName() + " " + user.getLastName() + "!!!";
-        }
+    @GetMapping("/param/{name}")
+    public String sayHelloParam(@PathVariable String name) {
+        return "Hello " + "Mr." + name + "!!!";
+    }
 
-        @PutMapping("/put/{firstName}")
-        public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
-            return "Hello " + firstName + " " + lastName + "!!!";
-        }
+    @PostMapping("/post")
+    public String sayHello(@RequestBody User user) {
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!!!";
+    }
+
+    @PutMapping("/put/{firstName}")
+    public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
+        return "Hello " + firstName + " " + lastName + "!!!";
+    }
+
+    //UC3
+   @PostMapping("/greet")
+    public String sayPostHello(@RequestBody User user) {
+        String newUser;
+        newUser = serviceLayer.sayPostHello(user);
+        return newUser;
+   //    return "Hello "+user.getFirstName() +" "+ user.getLastName() + "!!!";
+    }
 }
