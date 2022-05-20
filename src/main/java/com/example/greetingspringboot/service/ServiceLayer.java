@@ -5,6 +5,7 @@ import com.example.greetingspringboot.repository.SpringRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,11 @@ public class ServiceLayer {
         //   return "Hello Greetings to Mr. "+user.getFirstName() +" "+ user.getLastName() + "!!!";
     }
 
-    public Optional<User> sayHelloById(int id) {
+    public Optional<User> showById(int id) {
         return springRepository.findById(id);
+    }
+
+    public List<User> showAll() {
+        return springRepository.findAll();
     }
 }

@@ -70,8 +70,14 @@ public class GreetingController {
     }
 
     @GetMapping("/show/{id}")
-    public Optional<User> sayHelloById(@PathVariable int id) {
-        Optional<User> response = serviceLayer.sayHelloById(id);
+    public Optional<User> showById(@PathVariable int id) {
+        Optional<User> response = serviceLayer.showById(id);
+        return response;
+    }
+
+    @GetMapping("/show")
+    public List<User> showAll() {
+        List<User> response = serviceLayer.showAll();
         return response;
     }
 }
