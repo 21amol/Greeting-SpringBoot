@@ -19,10 +19,10 @@ public class GreetingController {
         return response;
     }
 
-    @RequestMapping(value = { "","/Home"})
+    @RequestMapping(value = {"", "/Home"})
     public String sayHello() {
-            return "Hello, I am Amol!!!";
-        }
+        return "Hello, I am Amol!!!";
+    }
 
     @RequestMapping(value = {"/hello-w"}, method = RequestMethod.GET)
     public String sayHelloDifferently() {
@@ -39,10 +39,10 @@ public class GreetingController {
         return "Hello " + "Mr." + name + "!!!";
     }
 
-    @PostMapping("/post")
-    public String sayHello(@RequestBody User user) {
-        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!!!";
-    }
+//    @PostMapping("/post")
+//    public String sayHello(@RequestBody User user) {
+//        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!!!";
+//    }
 
     @PutMapping("/put/{firstName}")
     public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
@@ -50,11 +50,18 @@ public class GreetingController {
     }
 
     //UC3
-   @PostMapping("/greet")
-    public String sayPostHello(@RequestBody User user) {
-        String newUser;
+    @PostMapping("/greet")
+    public User sayPostHello(@RequestBody User user) {
+        User newUser;
         newUser = serviceLayer.sayPostHello(user);
         return newUser;
-   //    return "Hello "+user.getFirstName() +" "+ user.getLastName() + "!!!";
+        //    return "Hello "+user.getFirstName() +" "+ user.getLastName() + "!!!";
+    }
+
+    @PostMapping("/save")                              //UC-4
+    public User saySaveHello(@RequestBody User user) {
+        User newUser;
+        newUser = serviceLayer.sayPostHello(user);
+        return newUser;
     }
 }
