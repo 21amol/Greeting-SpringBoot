@@ -1,8 +1,12 @@
 package com.example.greetingspringboot.controller;
+
 import com.example.greetingspringboot.model.User;
 import com.example.greetingspringboot.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Hello")
@@ -63,5 +67,11 @@ public class GreetingController {
         User newUser;
         newUser = serviceLayer.sayPostHello(user);
         return newUser;
+    }
+
+    @GetMapping("/show/{id}")
+    public Optional<User> sayHelloById(@PathVariable int id) {
+        Optional<User> response = serviceLayer.sayHelloById(id);
+        return response;
     }
 }
