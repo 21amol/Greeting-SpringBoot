@@ -88,4 +88,15 @@ public class GreetingController {
     public User edit(@RequestBody User user) {
         return springRepository.save(user);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
+        Optional<User> newUser = springRepository.findById(id);
+        if (newUser.isPresent()) {
+            springRepository.delete(newUser.get());
+            return "Deleted record with id number: " + id;
+        } else {
+            return "Record not Found";
+        }
+    }
 }
