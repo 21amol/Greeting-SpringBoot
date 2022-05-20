@@ -10,6 +10,6 @@ public class ServiceLayer {
 
     public String sayPostHello(User user) {
    //     User newUser = new User(user);
-        return "Hello "+user.getFirstName() +" "+ user.getLastName() + "!!!";
+        return "Hello Mr."+user.getFirstName() +" "+ user.getLastName() + "!!!";
     }
 }
