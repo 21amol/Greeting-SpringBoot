@@ -16,10 +16,10 @@ public class GreetingController {
 
     @Autowired
     ServiceLayer serviceLayer;
-    @Autowired
-    SpringRepo springRepository;
+//    @Autowired
+//    SpringRepo springRepository;
 
-    @GetMapping("/ser")                           //UC-2
+    @GetMapping("/server")                           //UC-2
     public String sayHelloService() {
         String response;
         response = serviceLayer.sayHello();
@@ -46,26 +46,12 @@ public class GreetingController {
         return "Hello " + "Mr." + name + "!!!";
     }
 
-//    @PostMapping("/post")
-//    public String sayHello(@RequestBody User user) {
-//        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!!!";
-//    }
-
     @PutMapping("/put/{firstName}")
     public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
         return "Hello " + firstName + " " + lastName + "!!!";
     }
 
-    //UC3
-    @PostMapping("/greet")
-    public User sayPostHello(@RequestBody User user) {
-        User newUser;
-        newUser = serviceLayer.sayPostHello(user);
-        return newUser;
-        //    return "Hello "+user.getFirstName() +" "+ user.getLastName() + "!!!";
-    }
-
-    @PostMapping("/save")                              //UC-4
+    @PostMapping("/save")
     public User saySaveHello(@RequestBody User user) {
         User newUser;
         newUser = serviceLayer.sayPostHello(user);
@@ -74,29 +60,31 @@ public class GreetingController {
 
     @GetMapping("/show/{id}")
     public Optional<User> showById(@PathVariable int id) {
-        Optional<User> response = serviceLayer.showById(id);
+        Optional<User> response;
+        response = serviceLayer.showById(id);
         return response;
     }
 
     @GetMapping("/show")
     public List<User> showAll() {
-        List<User> response = serviceLayer.showAll();
+        List<User> response;
+        response = serviceLayer.showAll();
         return response;
     }
 
-    @PutMapping("/edit")
-    public User edit(@RequestBody User user) {
-        return springRepository.save(user);
+    @PutMapping("/edit/{id}")
+  //  public User edit(@RequestBody User user) {
+    public User edit(@RequestBody User user, @PathVariable int id) {
+        User response;
+        response = serviceLayer.edit(id, user);
+        return response;
+   //     return springRepository.save(user);
     }
 
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        Optional<User> newUser = springRepository.findById(id);
-        if (newUser.isPresent()) {
-            springRepository.delete(newUser.get());
-            return "Deleted record with id number: " + id;
-        } else {
-            return "Record not Found";
-        }
+        String response;
+        response = serviceLayer.delete(id);
+        return response;
     }
 }
