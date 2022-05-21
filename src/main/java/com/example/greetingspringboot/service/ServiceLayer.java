@@ -33,4 +33,25 @@ public class ServiceLayer {
     public List<User> showAll() {
         return springRepository.findAll();
     }
+
+    public User edit(int id, User user) {
+
+        User getUser = springRepository.getById(id);
+        getUser.setFirstName(user.getFirstName());
+        getUser.setLastName(user.getLastName());
+
+        User updateUser;
+        updateUser = springRepository.save(getUser);
+        return updateUser;
+    }
+
+    public String delete(int id) {
+        Optional<User> newUser = springRepository.findById(id);
+        if (newUser.isPresent()) {
+            springRepository.delete(newUser.get());
+            return "Deleted record with id number: " + id;
+        } else {
+            return "Record not Found";
+        }
+    }
 }

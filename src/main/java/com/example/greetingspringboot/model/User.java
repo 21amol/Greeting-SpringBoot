@@ -17,6 +17,14 @@ public class User {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User(User user) {
         super();
         this.firstName = user.getFirstName();
@@ -26,6 +34,14 @@ public class User {
 //    public void setFirstName(String firstName) {
 //        this.firstName = firstName;
 //    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 //
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
